@@ -1,0 +1,50 @@
+
+<div class="col-sm-10 col-sm-offset-1">
+<table style="width:100%" class="table table-striped" id="mainTable">
+  <tr>
+    <th>Creada</th>
+    <th>Titulo</th>
+    <th>Autor</th>
+    <th>Publicada</th>
+    <th>Links</th>
+  </tr>
+<% @posts.each do |post| %>
+  <tr>
+    <td><%= post.created_at.strftime("%b %d %y") %></td>
+    <td><%= post.title %></td>
+    <td><%= post.author %></td>
+    <td><%= post.published %></td>
+    <td>
+      <%= link_to "Ver", post %> |
+      <%= link_to "Editar", edit_post_path(post), remote: true, "data-toggle" => "modal", "data-target" => "#myModal"  %> |
+      <%= link_to "Eliminar", post, method: :delete, data: { confirm: "Está seguro? " } %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+  <div class="text-center">
+
+      <%= link_to "Nuevo artículo", new_post_path, remote: true, class: "btn btn-primary btn-lg", "data-toggle" => "modal", "data-target" => "#myModal" %>
+
+  </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>

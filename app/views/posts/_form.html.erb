@@ -1,0 +1,38 @@
+
+<%= form_for @post, remote: true do |f| %>
+
+  <% if @post.errors.any? %>
+    <h3> Existen los siguientes errores: </h3>
+    <div style="color: red;">
+      <% @post.errors.each do |attr, msg| %>
+          <li><h4><%= "El atributo #{attr} - #{msg}" %></h4></li>
+      <% end %>
+    </div>
+    <hr>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :title, "Titulo del post" %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :author, "Autor" %>
+    <%= f.text_field :author, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :published, "Publicado?" %>
+    <%= f.check_box :published %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :content, "Contenido" %>
+    <%= f.text_area :content, rows: 10, class: "form-control" %>
+  </div>
+
+  <div class="text-center">
+    <%= f.submit "Submit", disable_with: 'Submiting...', class: "btn btn-default" %>
+  </div>
+
+<% end %>
